@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label "sys-sdmin-mnf"
+        label "jen-taks"
     }
     parameters {
         choice(name: 'ENV_ITI', choices: ['dev', 'test', 'prod', "release"])
