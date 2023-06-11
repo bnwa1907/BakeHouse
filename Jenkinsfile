@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label "jen-taks"
+        label "sys-admin-mnf"
     }
     parameters {
         choice(name: 'ENV_ITI', choices: ['dev', 'test', 'prod', "release"])
@@ -11,7 +11,7 @@ pipeline {
                 script {
                     echo 'build'
                     if (params.ENV_ITI == "release") {
-                        withCredentials([usernamePassword(credentialsId: 'iti-sys-admin-mnf-docker-cred', usernameVariable: 'USERNAME_SYSADMIN', passwordVariable: 'PASSWORD_SYSADMIN')]) {
+                        withCredentials([usernamePassword(credentialsId: 'iti-slave', usernameVariable: 'USERNAME_SYSADMIN', passwordVariable: 'PASSWORD_SYSADMIN')]) {
                             sh '''
                                 docker login -u ${USERNAME_SYSADMIN} -p ${PASSWORD_SYSADMIN}
                                 docker build -t kareemelkasaby/bakehouseitisysadmin:v${BUILD_NUMBER} .
