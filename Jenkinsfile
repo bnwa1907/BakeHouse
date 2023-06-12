@@ -11,7 +11,7 @@ pipeline {
                 script {
                     echo 'build'
                     if (params.ENV_ITI == "release") {
-                        withCredentials([usernamePassword(credentialsId: 'iti-slave', usernameVariable: 'USERNAME_SYSADMIN', passwordVariable: 'PASSWORD_SYSADMIN')]) {
+                        withCredentials([usernamePassword(credentialsId: 'jenkins', usernameVariable: 'USERNAME_SYSADMIN', passwordVariable: 'PASSWORD_SYSADMIN')]) {
                             sh '''
                                 docker login -u ${USERNAME_SYSADMIN} -p ${PASSWORD_SYSADMIN}
                                 docker build -t kareemelkasaby/bakehouseitisysadmin:v${BUILD_NUMBER} .
@@ -31,7 +31,7 @@ pipeline {
                 echo 'deploy'
                 script {
                     if (params.ENV_ITI == "dev" || params.ENV_ITI == "test" || params.ENV_ITI == "prod") {
-                        withCredentials([file(credentialsId: 'iti-slave', variable: 'KUBECONFIG_ITI')]) {
+                        withCredentials([file(credentialsId: 'jenkins', variable: 'KUBECONFIG_ITI')]) {
                             sh '''
                                 export BUILD_NUMBER=$(cat ../build_num.txt)
                                 mv Deployment/deploy.yaml Deployment/deploy.yaml.tmp
