@@ -14,8 +14,8 @@ pipeline {
                         withCredentials([usernamePassword(credentialsId: 'docker-cred', usernameVariable: 'USERNAME_SYSADMIN', passwordVariable: 'PASSWORD_SYSADMIN')]) {
                             sh '''
                                 docker login -u ${USERNAME_SYSADMIN} -p ${PASSWORD_SYSADMIN}
-                                docker build -t kareemelkasaby/bakehouseitisysadmin:v${BUILD_NUMBER} .
-                                docker push kareemelkasaby/bakehouseitisysadmin:v${BUILD_NUMBER}
+                                docker build -t  omarelbanawany/bakehouseitisysadmin:v${BUILD_NUMBER} .
+                                docker push omarelbanawany/bakehouseitisysadmin:v${BUILD_NUMBER}
                                 echo ${BUILD_NUMBER} > ../build_num.txt
                                 echo ${ENV_ITI}
                             '''
