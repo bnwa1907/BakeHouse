@@ -35,7 +35,7 @@ pipeline {
                                 cat Deployment/deploy.yaml.tmp | envsubst > Deployment/deploy.yaml
                                 rm -rf Deployment/deploy.yaml.tmp
                                 kubectl apply -f Deployment --kubeconfig ${KUBECONFIG_ITI} -n ${BRANCH_NAME}
-                                helm upgrade --install my-bakehouse ./helm-dep --values helm-dep/${BRANCH_NAME}.yaml --kubeconfig ${KUBECONFIG_ITI} -n ${BRANCH_NAME}
+                                helm upgrade --install Bakehouse ./helm-dep --values helm-dep/${BRANCH_NAME}.yaml --kubeconfig ${KUBECONFIG_ITI} -n ${BRANCH_NAME}
                             '''
                         }
                     } else {
