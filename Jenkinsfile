@@ -31,7 +31,7 @@ pipeline {
                 echo 'deploy'
                 script {
                     if (params.ENV_ITI == "dev" || params.ENV_ITI == "test" || params.ENV_ITI == "prod") {
-                        withCredentials([file(credentialsId: 'doc-cluster', variable: 'KUBECONFIG_ITI')]) {
+                        withCredentials([file(credentialsId: 'cluster-cred', variable: 'KUBECONFIG_ITI')]) {
                             sh '''
                                 export BUILD_NUMBER=$(cat ../build_num.txt)
                                 mv Deployment/deploy.yaml Deployment/deploy.yaml.tmp
