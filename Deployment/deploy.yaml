@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: bakehouse
-  name: bakehouse
+    app: {{ .valus.metadata.name }}
+  name: {{ .valus.metadata.name }}
 spec:
-  replicas: 1
+  replicas: {{ .valus.replicacount }}
   selector:
     matchLabels:
-      app: bakehouse
+      app: {{ .valus.metadata.name }}
   template:
     metadata:
       labels:
-        app: bakehouse
+        app: {{ .valus.metadata.name }}
     spec:
       containers:
-      - image: kareemelkasaby/bakehouseitisysadmin:v${BUILD_NUMBER}
-        name: bakehouse
-        imagePullPolicy: Always
+      - image: {{ .valus.metadata.myName }}/{{ .valus.metadata.name }}{{ .valus.metadata.track }}:v${BUILD_NUMBER}
+        name: {{ .valus.metadata.name }}
+        imagePullPolicy: {{ .valus.image.myPullPolicy }}
         ports:
-        - containerPort: 80
+        - containerPort: {{ .valus.service.port }}
         resources: {}
