@@ -13,7 +13,6 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ .Values.metadata.name }}
     spec:
       containers:
       - image: {{ .Values.metadata.myName }}/{{ .Values.metadata.name }}{{ .Values.metadata.track }}:v${BUILD_NUMBER}
