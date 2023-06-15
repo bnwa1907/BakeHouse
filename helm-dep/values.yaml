@@ -1,4 +1,4 @@
-# Default values for helm-dep.
+# Default values for Helm-Deployment.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -7,8 +7,16 @@ replicaCount: 1
 image:
   repository: nginx
   pullPolicy: IfNotPresent
+  myPullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
+
+metadata:
+  myName: omarelbanawany
+  track: itisysadmin
+  name: bakehouse
+  portType: NodePort
+  protocol: TCP
 
 imagePullSecrets: []
 nameOverride: ""
@@ -39,6 +47,7 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
+  name: myservice
 
 ingress:
   enabled: false
