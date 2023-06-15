@@ -2,6 +2,9 @@ pipeline {
     agent {
         label "sys-admin-mnf"
     }
+     parameters {
+        choice(name: 'ENV_ITI', choices: ['dev', 'test', 'prod', "release"])
+    }
     stages {
         stage('build') {
             steps {
