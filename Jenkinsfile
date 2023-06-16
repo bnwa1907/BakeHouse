@@ -34,7 +34,7 @@ pipeline {
                                 mv helm-dep/templates/deploy.yaml helm-dep/templates/deploy.yaml.tmp
                                 cat helm-dep/templates/deploy.yaml.tmp | envsubst > helm-dep/templates/deploy.yaml
                                 rm -rf helm-dep/templates/deploy.yaml.tmp
-                                helm upgrade --install Bakehouse ./helm-dep --values helm-dep/${BRANCH_NAME}.yaml --kubeconfig ${KUBECONFIG_ITI} -n ${BRANCH_NAME}
+                                helm upgrade --install my-bakehouse ./helm-dep --values helm-dep/${BRANCH_NAME}.yaml --kubeconfig ${KUBECONFIG_ITI} -n ${BRANCH_NAME}
                             '''
                         }
                     } else {
