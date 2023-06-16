@@ -31,9 +31,9 @@ pipeline {
                         withCredentials([file(credentialsId: 'cluster-cred', variable: 'KUBECONFIG_ITI')]) {
                             sh '''
                                 export BUILD_NUMBER=$(cat ../build_num.txt)
-                                mv helm-dep/deploy.yaml Deployment/deploy.yaml.tmp
-                                cat helm-dep/deploy.yaml.tmp | envsubst > Deployment/deploy.yaml
-                                rm -rf helm-dep/deploy.yaml.tmp
+                                mv helm-dep/templates/deploy.yaml Deployment/deploy.yaml.tmp
+                                cat helm-dep/templates/deploy.yaml.tmp | envsubst > Deployment/deploy.yaml
+                                rm -rf helm-dep/templates/deploy.yaml.tmp
                                 helm upgrade --install Bakehouse ./helm-dep --values helm-dep/${BRANCH_NAME}.yaml --kubeconfig ${KUBECONFIG_ITI} -n ${BRANCH_NAME}
                             '''
                         }
