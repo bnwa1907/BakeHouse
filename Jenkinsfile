@@ -18,7 +18,7 @@ pipeline {
                             '''
                         }
                     } else {
-                        echo "user chose ${params.ENV_ITI}"
+                        echo "user chose ${BRANCH_NAME}"
                     }
                 }
             }
@@ -39,7 +39,7 @@ pipeline {
                             '''
                         }
                     } else {
-                        echo "user chose ${params.ENV_ITI}"
+                        echo "user chose ${BRANCH_NAME}"
                     }
                 }
             }
